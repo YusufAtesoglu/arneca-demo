@@ -1,0 +1,29 @@
+/* In your CSS file, e.g., Input.css */
+.form-checkbox {
+    border: 1px solid #a2612f;
+    appearance: none; /* Remove default styling */
+    border-radius: 0.25rem; /* Rounded corners */
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+    background-color: #3b3d3e; /* Default background color */
+    width: 1.25rem; /* Width of checkbox */
+    height: 1.25rem; /* Height of checkbox */
+  }
+  
+  .form-checkbox:checked {
+    border-color: #fc8123;
+    background-color: #3b3d3e; /* Gray background when checked */
+  }
+  
+  .form-checkbox:checked::after {
+    content: '✓'; /* Check mark symbol */
+    color: #fc8123; /* Color of the check mark */
+    font-size: 1rem; /* Size of the check mark */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Center the check mark */
+  }
+  
+  
