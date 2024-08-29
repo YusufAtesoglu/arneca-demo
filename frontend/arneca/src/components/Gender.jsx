@@ -1,14 +1,14 @@
 import Input from "./Input";
 import { useState } from "react";
 const Gender = ({handleChange}) => {
-    const [isOpen, setIsOpen] = useState(false);
+    // const [isOpen, setIsOpen] = useState(false);
     const [selectedGenders, setSelectedGenders] = useState({
       Man: false,
       Women: false,
       Kids: false,
     });
   
-    const toggleDropdown = () => setIsOpen(!isOpen);
+    // const toggleDropdown = () => setIsOpen(!isOpen);
   
     const handleCheckboxChange = (event) => {
       const { name, checked } = event.target;

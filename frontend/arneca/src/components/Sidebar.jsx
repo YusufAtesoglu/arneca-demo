@@ -3,25 +3,24 @@ import Size from '../components/Size';
 import Brand from '../components/Brand';
 import Activity from '../components/Activity';
 import Color from '../components/Color';
-import Input from '../components/Input';
 import Gender from './Gender';
 import "../pages/css/index.css"
 
 const Sidebar = ({ handleChange ,handleActivityChange,handleBrandsChange,handleGendersChange,handleSizeChange,handleColorChange}) => {
-  const [selectedCategory, setSelectedCategory] = useState({
-    men: false,
-    women: false,
-    kids: false,
-  });
+  // const [selectedCategory, setSelectedCategory] = useState({
+  //   men: false,
+  //   women: false,
+  //   kids: false,
+  // });
 
-  const handleCategoryChange = (event) => {
-    const { name, checked } = event.target;
-    setSelectedCategory((prevState) => ({
-      ...prevState,
-      [name]: checked,
-    }));
-    handleChange(event); // Call the handleChange function from props
-  };
+  // const handleCategoryChange = (event) => {
+  //   const { name, checked } = event.target;
+  //   setSelectedCategory((prevState) => ({
+  //     ...prevState,
+  //     [name]: checked,
+  //   }));
+  //   handleChange(event);
+  // };
 
   return (
     <div>

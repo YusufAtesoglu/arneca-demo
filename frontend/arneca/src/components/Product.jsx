@@ -14,7 +14,7 @@ const Product = ({ result, label }) => {
     setVisibleLabels(updatedLabels);
   };
 
-  // Function to capitalize the first letter of each label
+  // etiketlerin il harfini büyük harf yap
   const capitalizeFirstLetter = (str) => {
     return str.charAt(0).toUpperCase() + str.slice(1);
   };

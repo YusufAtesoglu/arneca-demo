@@ -18,7 +18,7 @@ const Brand = ({ handleChange }) => {
       ...prevState,
       [name]: checked,
     }));
-    handleChange(event);  // Marka seçimi değiştiğinde handleChange fonksiyonunu çağır
+    handleChange(event);  
   };
 
   return (

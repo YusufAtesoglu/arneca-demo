@@ -13,10 +13,11 @@ router.post("/", async (req, res) => {
   }
 });
 
-// Tüm ürünleri getirme (Read - All)
+// Tüm ürünleri filtreleme getirme (Read - All)
 router.get("/", async (req, res) => {
   try {
-    const { query, category, activity, brand, gender, sizes,colors } = req.query;
+    const { query,  activity, brand, gender, sizes, colors } =
+      req.query;
     let filter = {};
 
     // Arama sorgusu varsa
@@ -25,38 +26,9 @@ router.get("/", async (req, res) => {
     }
 
     // Kategori filtrelemesi
-    if (category) {
-      const selectedCategories = category.split(",");
-      const activityFilters = selectedCategories.filter(cat => isNaN(cat)); // NaN olanları seçiyoruz (activity)
-      const priceFilters = selectedCategories.filter(cat => !isNaN(cat));  // NaN olmayanları seçiyoruz (price)
-      const brandFilters = selectedCategories.filter(cat => isNaN(cat)); // NaN olanları seçiyoruz (brand)
-      const genderFilters = selectedCategories.filter(cat => isNaN(cat)); // NaN olanları seçiyoruz (gender)
-      const colorFilters = selectedCategories.filter(cat => isNaN(cat)); // NaN olanları seçiyoruz (color)
-
-      // Activity filtrelemesi için $or koşulu
-      if (activityFilters.length > 0) {
-        filter.$or = activityFilters.map(activity => ({ activity }));
-      }
-
-      // Brand filtrelemesi
-      if (brandFilters.length > 0) {
-        filter.$or = brandFilters.map(brand => ({ brand }));
-      }
-        // color filtrelemesi
-        if (colorFilters.length > 0) {
-          filter.$or = colorFilters.map(color => ({ color }));
-        }
-
-      // Gender filtrelemesi
-      if (genderFilters.length > 0) {
-        filter.$or = genderFilters.map(gender => ({ gender }));
-      }
-
-      // Price filtrelemesi
-      if (priceFilters.length > 0) {
-        filter.price = { $in: priceFilters };
-      }
-    }
+    // if (category) {
+    //   const selectedCategories = category.split(",");
+    // }
 
     // Activity filtrelemesi
     if (activity) {

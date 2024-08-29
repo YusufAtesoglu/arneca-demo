@@ -6,7 +6,7 @@ import Card from "../components/Card.jsx";
 import "../pages/css/index.css";
 
 const ShopPage = () => {
-  const [selectedCategories, setSelectedCategories] = useState([]);
+  // const [selectedCategories, setSelectedCategories] = useState([]);
   const [selectedActivities, setSelectedActivities] = useState([]);
   const [selectedBrands, setSelectedBrands] = useState([]);
   const [selectedGenders, setSelectedGenders] = useState([]);
@@ -19,7 +19,18 @@ const ShopPage = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [counterCart, setCounterCart] = useState(0);
   const [label, setLabel] = useState([]); // Label state'i liste olarak tanımlandı
-  
+  const [selectedLabels, setSelectedLabels] = useState(["Sneaker", "Red"]);
+
+  const handleRemoveLabel = (removedLabel) => {
+    // Checkboxın seçili durumunu kaldırmak için bu fonksiyonu kullanın
+    const checkbox = document.querySelector(`input[value="${removedLabel.toLowerCase()}"]`);
+    if (checkbox) {
+      checkbox.checked = false;
+    }
+
+    // Diğer state güncellemeleri burada yapılabilir
+    setSelectedLabels(selectedLabels.filter(label => label !== removedLabel));
+  };
   const handleAddToCart = () => {
     setCounterCart(counterCart + 1);
   };
@@ -47,15 +58,15 @@ const ShopPage = () => {
     setQuery(event.target.value);
   };
 
-  const handleChange = (event) => { 
-    const value = event.target.value;
-    setSelectedCategories((prevCategories) =>
-      prevCategories.includes(value)
-        ? prevCategories.filter((category) => category !== value)
-        : [...prevCategories, value]
-    );
-    updateLabel(value, event.target.checked);
-  };
+  // const handleChange = (event) => { 
+  //   const value = event.target.value;
+  //   setSelectedCategories((prevCategories) =>
+  //     prevCategories.includes(value)
+  //       ? prevCategories.filter((category) => category !== value)
+  //       : [...prevCategories, value]
+  //   );console.log(event.target.name)
+  //   updateLabel(value, event.target.checked);
+  // };
 
   const handleBrandsChange = (event) => {
     const value = event.target.value;
@@ -63,7 +74,8 @@ const ShopPage = () => {
       prevBrands.includes(value)
         ? prevBrands.filter((brand) => brand !== value)
         : [...prevBrands, value]
-    );
+    );console.log(value);
+    
     updateLabel(value, event.target.checked);
   };
 
@@ -95,7 +107,7 @@ const ShopPage = () => {
       prevGenders.includes(value)
         ? prevGenders.filter((gender) => gender !== value)
         : [...prevGenders, value]
-    );
+    );console.log(value)
     updateLabel(value, event.target.checked);
   };
 
@@ -124,9 +136,9 @@ const ShopPage = () => {
     const fetchFilteredProducts = async () => {
       try {
         const queryParam = encodeURIComponent(query);
-        const categoryParams = selectedCategories
-          .map((cat) => encodeURIComponent(cat))
-          .join(",");
+        // const categoryParams = selectedCategories
+        //   .map((cat) => encodeURIComponent(cat))
+        //   .join(",");
         const activityParams = selectedActivities
           .map((act) => encodeURIComponent(act))
           .join(",");
@@ -144,8 +156,8 @@ const ShopPage = () => {
           .join(",");
   
         const response = await fetch(
-          `http://localhost:5000/api/products?query=${queryParam}&category=${categoryParams}&activity=${activityParams}&brand=${brandParams}&gender=${genderParams}&sizes=${sizeParams}&colors=${colorParams}`
-        );
+          // `http://localhost:5000/api/products?query=${queryParam}&category=${categoryParams}&activity=${activityParams}&brand=${brandParams}&gender=${genderParams}&sizes=${sizeParams}&colors=${colorParams}`
+          `http://localhost:5000/api/products?query=${queryParam}&activity=${activityParams}&brand=${brandParams}&gender=${genderParams}&sizes=${sizeParams}&colors=${colorParams}`  );
   
         if (response.ok) {
           const data = await response.json();
@@ -161,7 +173,7 @@ const ShopPage = () => {
     fetchFilteredProducts();
   }, [
     query,
-    selectedCategories,
+    // selectedCategories,
     selectedActivities,
     selectedBrands,
     selectedGenders,
@@ -193,7 +205,7 @@ const ShopPage = () => {
      
       <div className="flex w-full">
         <Sidebar
-          handleChange={handleChange}
+          // handleChange={handleChange}
           handleActivityChange={handleActivityChange}
           handleBrandsChange={handleBrandsChange}
           handleGendersChange={handleGendersChange}

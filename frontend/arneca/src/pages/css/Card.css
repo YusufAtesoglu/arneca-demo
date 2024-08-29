@@ -1,31 +1,11 @@
 
-  
- 
-  .custom-heart-icon {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 1.5rem; /* İkonun boyutunu ayarlayın */
-    color: red; /* İkonun rengini ayarlayın */
-    cursor: pointer; /* İkonun üzerine gelindiğinde işaretçi değişir */
-    z-index: 1; /* Diğer elemanların üstünde kalmasını sağlar */
-  }
-  
-  
-  
-  .color-buttons {
-    display: flex;
-    gap: 5px; /* Butonlar arasında boşluk */
-  }
-  
   .color-btn {
     width: 20px; /* Buton genişliği */
     height: 20px; /* Buton yüksekliği */
-    border-radius: 50%; /* Butonları yuvarlak yapar */
+   
     border: 1px solid #ddd; /* Buton kenarlığı */
-    cursor: pointer; /* Butonların üzerine gelindiğinde işaretçi değişir */
+
   }
-  
   .color-btn.blue {
     background-color: blue;
   }
@@ -43,15 +23,9 @@
   }.color-btn.grey {
     background-color: rgb(117, 120, 122);
   }
-  
-  
-  
   .color-btn.white {
     background-color: white;
     border: 1px solid #ddd; /* Beyaz buton için kenarlık */
   }
-  
-  .btn-outline-primary {
-    position: relative;
-  }
+
   
