@@ -3,22 +3,11 @@ import Input from './Input';
 
 const Activity = ({ handleChange }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedActivities, setSelectedActivities] = useState({
-    Running: false,
-    Basketball: false,
-    Tennis: false,
-    Casual: false,
-    Heel:false,
-  });
+ 
 
   const toggleDropdown = () => setIsOpen(!isOpen);
 
   const handleCheckboxChange = (event) => {
-    const { name, checked } = event.target;
-    setSelectedActivities((prevState) => ({
-      ...prevState,
-      [name]: checked,
-    }));
     handleChange(event);  // Activity seçimi değiştiğinde handleChange fonksiyonunu çağır
   };
 
@@ -53,7 +42,7 @@ const Activity = ({ handleChange }) => {
               handleChange={handleCheckboxChange}
               title="Running"
               name="Running"
-              checked={selectedActivities.Running}
+            
               value={"Running"}
             />
           </li>
@@ -62,7 +51,7 @@ const Activity = ({ handleChange }) => {
               handleChange={handleCheckboxChange}
               title="Basketball"
               name="Basketball"
-              checked={selectedActivities.Basketball}
+        
               value={"Basketball"}
             />
           </li>
@@ -71,7 +60,7 @@ const Activity = ({ handleChange }) => {
               handleChange={handleCheckboxChange}
               title="Tennis"
               name="Tennis"
-              checked={selectedActivities.Tennis}
+            
               value={"Tennis"}
             />
           </li>
@@ -80,7 +69,7 @@ const Activity = ({ handleChange }) => {
               handleChange={handleCheckboxChange}
               title="Casual"
               name="Casual"
-              checked={selectedActivities.Casual}
+             
               value={"Casual"}
             />
           </li>
@@ -89,7 +78,7 @@ const Activity = ({ handleChange }) => {
               handleChange={handleCheckboxChange}
               title="Heel"
               name="Heel"
-              checked={selectedActivities.Heel}
+             
               value={"Heel"}
             />
           </li>

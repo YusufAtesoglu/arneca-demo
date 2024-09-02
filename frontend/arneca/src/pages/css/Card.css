@@ -2,7 +2,6 @@
   .color-btn {
     width: 20px; /* Buton genişliği */
     height: 20px; /* Buton yüksekliği */
-   
     border: 1px solid #ddd; /* Buton kenarlığı */
 
   }
@@ -27,5 +26,10 @@
     background-color: white;
     border: 1px solid #ddd; /* Beyaz buton için kenarlık */
   }
+  
+  
+ 
+  
+ 
 
   

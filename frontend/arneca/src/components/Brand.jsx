@@ -3,21 +3,10 @@ import Input from './Input';
 
 const Brand = ({ handleChange }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedBrands, setSelectedBrands] = useState({
-    Nike: false,
-    Adidas: false,
-    Puma: false,
-    Vans: false,
-  });
-
+ 
   const toggleDropdown = () => setIsOpen(!isOpen);
 
   const handleCheckboxChange = (event) => {
-    const { name, checked } = event.target;
-    setSelectedBrands((prevState) => ({
-      ...prevState,
-      [name]: checked,
-    }));
     handleChange(event);  
   };
 
@@ -52,7 +41,7 @@ const Brand = ({ handleChange }) => {
               handleChange={handleCheckboxChange}
               title="Nike"
               name="Nike"
-              checked={selectedBrands.Nike}
+             
               value={"Nike"}
             />
           </li>
@@ -61,7 +50,7 @@ const Brand = ({ handleChange }) => {
               handleChange={handleCheckboxChange}
               title="Adidas"
               name="Adidas"
-              checked={selectedBrands.Adidas}
+           
               value={"Adidas"}
             />
           </li>
@@ -70,7 +59,7 @@ const Brand = ({ handleChange }) => {
               handleChange={handleCheckboxChange}
               title="Puma"
               name="Puma"
-              checked={selectedBrands.Puma}
+            
               value={"Puma"}
             />
           </li>
@@ -79,7 +68,7 @@ const Brand = ({ handleChange }) => {
               handleChange={handleCheckboxChange}
               title="Vans"
               name="Vans"
-              checked={selectedBrands.Vans}
+          
               value={"Vans"}
             />
           </li>

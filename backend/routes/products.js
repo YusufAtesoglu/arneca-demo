@@ -22,13 +22,8 @@ router.get("/", async (req, res) => {
 
     // Arama sorgusu varsa
     if (query) {
-      filter.name = { $regex: query, $options: "i" }; // İsimde arama yap
+      filter.name = { $regex: query, $options: "i" }; // İsimde arama yap- options_i büyük küçük harf duyarlılığı
     }
-
-    // Kategori filtrelemesi
-    // if (category) {
-    //   const selectedCategories = category.split(",");
-    // }
 
     // Activity filtrelemesi
     if (activity) {

@@ -3,26 +3,13 @@ import Input from './Input';
 
 const Color = ({ handleChange }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedColors, setSelectedColors] = useState({
-    red: false,
-    blue: false,
-    green: false,
-    yellow: false,
-    white: false,
-    black: false,
-    grey:false,
-   
-  });
+ 
 
   const handleToggle = () => setIsOpen(!isOpen);
 
   const handleCheckboxChange = (event) => {
-    const { name, checked } = event.target;
-    setSelectedColors((prevState) => ({
-      ...prevState,
-      [name]: checked,
-    }));
-    handleChange(event); // Notify the parent component of the change
+    
+    handleChange(event); 
   };
 
   return (
@@ -52,19 +39,72 @@ const Color = ({ handleChange }) => {
         </svg>
       </button>
       {isOpen && (
-        <ul className="py-2 space-y-2 !pl-0">
-          {Object.keys(selectedColors).map((color) => (
-            <li key={color}>
-              <Input
-                handleChange={handleCheckboxChange}
-                title={color.charAt(0).toUpperCase() + color.slice(1)}
-                name={color}
-                checked={selectedColors[color]}
-                value={color}
-              />
-            </li>
-          ))}
-        </ul>
+      <ul className="py-2 space-y-2 !pl-0">
+      <li>
+        <Input
+          handleChange={handleCheckboxChange}
+          title="Red"
+          name="red"
+        
+          value={"red"}
+        />
+      </li>
+      <li>
+        <Input
+          handleChange={handleCheckboxChange}
+          title="Blue"
+          name="blue"
+    
+          value={"blue"}
+        />
+      </li>
+      <li>
+        <Input
+          handleChange={handleCheckboxChange}
+          title="Green"
+          name="green"
+        
+          value={"green"}
+        />
+      </li>
+      <li>
+        <Input
+          handleChange={handleCheckboxChange}
+          title="Yellow"
+          name="yellow"
+         
+          value={"yellow"}
+        />
+      </li>
+      <li>
+        <Input
+          handleChange={handleCheckboxChange}
+          title="White"
+          name="white"
+         
+          value={"white"}
+        />
+      </li>
+      <li>
+        <Input
+          handleChange={handleCheckboxChange}
+          title="Black"
+          name="black"
+         
+          value={"black"}
+        />
+      </li>
+      
+      <li>
+        <Input
+          handleChange={handleCheckboxChange}
+          title="Grey"
+          name="grey"
+         
+          value={"grey"}
+        />
+      </li>
+    </ul>
       )}
     </li>
   );
