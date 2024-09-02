@@ -5,7 +5,6 @@ import Product from "../components/Product.jsx";
 import Card from "../components/Card.jsx";
 import "../pages/css/index.css";
 
-
 const ShopPage = () => {
   // const [selectedCategories, setSelectedCategories] = useState([]);
   const [selectedActivities, setSelectedActivities] = useState([]);
@@ -18,9 +17,7 @@ const ShopPage = () => {
   const apiUrl = process.env.REACT_APP_API_BASE_URL;
   const [counterCart, setCounterCart] = useState(0);
   const [label, setLabel] = useState([]); // Label state'i liste olarak tanımlandı
- 
 
- 
   const handleAddToCart = () => {
     setCounterCart(counterCart + 1);
   };
@@ -31,12 +28,14 @@ const ShopPage = () => {
 
   const handleBrandsChange = (event) => {
     const value = event.target.value;
-    setSelectedBrands((prevBrands) =>
-      prevBrands.includes(value) //(Bu, value değerinin (yani checkbox'ın değeri) prevBrands dizisinde olup olmadığını kontrol eder.)
-        ? prevBrands.filter((brand) => brand !== value) //dizi de mevcutsa, bu demektşr ki checkbıx işaretini kaldırmak isstiyor
-        : [...prevBrands, value] //eğer value dizide mevcut değilse bu demektir ki checkbox yeni işaretlendi prevBrands a value eklenir
-    );console.log(value);
-    
+    setSelectedBrands(
+      (prevBrands) =>
+        prevBrands.includes(value) //(Bu, value değerinin (yani checkbox'ın değeri) prevBrands dizisinde olup olmadığını kontrol eder.)
+          ? prevBrands.filter((brand) => brand !== value) //dizi de mevcutsa, bu demektşr ki checkbıx işaretini kaldırmak isstiyor
+          : [...prevBrands, value] //eğer value dizide mevcut değilse bu demektir ki checkbox yeni işaretlendi prevBrands a value eklenir
+    );
+    console.log(value);
+
     updateLabel(value, event.target.checked);
   };
 
@@ -60,7 +59,6 @@ const ShopPage = () => {
     });
     updateLabel(event.target.value, checked); //label yaz
   };
-  
 
   const handleGendersChange = (event) => {
     const value = event.target.value;
@@ -68,7 +66,8 @@ const ShopPage = () => {
       prevGenders.includes(value)
         ? prevGenders.filter((gender) => gender !== value)
         : [...prevGenders, value]
-    );console.log(value)
+    );
+    console.log(value);
     updateLabel(value, event.target.checked);
   };
 
@@ -97,7 +96,7 @@ const ShopPage = () => {
     const fetchFilteredProducts = async () => {
       try {
         const queryParam = encodeURIComponent(query);
-   
+
         const activityParams = selectedActivities
           .map((act) => encodeURIComponent(act))
           .join(",");
@@ -106,18 +105,18 @@ const ShopPage = () => {
           .join(",");
         const genderParams = selectedGenders
           .map((gen) => encodeURIComponent(gen)) //Bu fonksiyon, özel karakterleri URL'de kullanılabilir hale getirir.
-          .join(",");// Kodlanmış renkleri tek bir stringde virgülle ayırarak birleştirmek.
+          .join(","); // Kodlanmış renkleri tek bir stringde virgülle ayırarak birleştirmek.
         const sizeParams = selectedSizes
           .map((siz) => encodeURIComponent(siz))
           .join(",");
         const colorParams = selectedColors
           .map((clr) => encodeURIComponent(clr))
           .join(",");
-  
+
         const response = await fetch(
-        
-          `http://localhost:5000/api/products?query=${queryParam}&activity=${activityParams}&brand=${brandParams}&gender=${genderParams}&sizes=${sizeParams}&colors=${colorParams}`  );
-  
+          `http://localhost:5000/api/products?query=${queryParam}&activity=${activityParams}&brand=${brandParams}&gender=${genderParams}&sizes=${sizeParams}&colors=${colorParams}`
+        );
+
         if (response.ok) {
           const data = await response.json();
           setFilteredItems(data);
@@ -128,7 +127,7 @@ const ShopPage = () => {
         console.log("Filtering error:", error);
       }
     };
-  
+
     fetchFilteredProducts();
   }, [
     query,
@@ -139,10 +138,11 @@ const ShopPage = () => {
     selectedColors,
     apiUrl,
   ]);
- 
+
   // Seçilen cinsiyetleri al
-   const selectedGendersText = selectedGenders.length > 0 ? selectedGenders.join(', ') : "";
- 
+  const selectedGendersText =
+    selectedGenders.length > 0 ? selectedGenders.join(", ") : "";
+
   return (
     <div className="flex flex-col w-full min-h-screen bg-[#1d1f21]">
       <div
@@ -156,39 +156,43 @@ const ShopPage = () => {
         />
         <div className="border-b border-[#592e0c] py-2">
           <p className="text-[#815923] ml-10 pt-2">
-          Home &gt; Shoes &gt; {selectedGendersText}
+            Home &gt; Shoes &gt; {selectedGendersText}
           </p>
         </div>
-       <div className="shoes ml-44 pt-10 text-white"> <h1>Shoes</h1></div> 
+        <div className="shoes ml-32 pt-10 text-white">
+          {/* {" "} */}
+          <h1>Shoes</h1>
+        </div>
       </div>
-     
+
       <div className="flex w-full">
         <Sidebar
-     
           handleActivityChange={handleActivityChange}
           handleBrandsChange={handleBrandsChange}
           handleGendersChange={handleGendersChange}
           handleSizeChange={handleSizeChange}
           handleColorChange={handleColorChange}
-          className={`transition-transform duration-300`} 
+          className={`transition-transform duration-300`}
         />
         <div
           // className={`flex-1 transition-all duration-300 ${isSidebarOpen ? "ml-64" : "ml-0"}`}
           className={`flex-1 transition-all duration-300 ml-64`}
         >
           <Product
-            label={label.join(', ')} // Label'ı virgülle ayrılmış bir string olarak ilet
-            result={filteredItems.map(({ _id, img, name, price, colors,sizes }) => (
-              <Card
-                key={_id}
-                img={img}
-                name={name}
-                price={price}
-                colors={colors}
-                sizes={sizes}
-                setcounterCart={handleAddToCart}
-              />
-            ))}
+            label={label.join(", ")} // Label'ı virgülle ayrılmış bir string olarak ilet
+            result={filteredItems.map(
+              ({ _id, img, name, price, colors, sizes }) => (
+                <Card
+                  key={_id}
+                  img={img}
+                  name={name}
+                  price={price}
+                  colors={colors}
+                  sizes={sizes}
+                  setcounterCart={handleAddToCart}
+                />
+              )
+            )}
           />
         </div>
       </div>
